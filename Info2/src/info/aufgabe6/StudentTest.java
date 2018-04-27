@@ -2,6 +2,8 @@ package info.aufgabe6;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -9,41 +11,54 @@ import org.junit.jupiter.api.Test;
  * @author jancm
  *
  */
-class StudentTest {
+public class StudentTest {
 
+	private Student student;
+	
+	@BeforeEach
+	void createStudent() {
+		student = new Student(62855, "Jan", "Malle");
+	}
+	
 	@Test
 	void testStudent() {
-		fail("Not yet implemented");
+		assertTrue(student != null);
 	}
 
 	@Test
 	void testGetMatriculationNumber() {
-		fail("Not yet implemented");
+		assertEquals(student.getMatriculationNumber(), 62855);
 	}
 
 	@Test
 	void testGetFirstName() {
-		fail("Not yet implemented");
+		assertEquals(student.getFirstName(), "Jan");
 	}
 
 	@Test
 	void testGetLastName() {
-		fail("Not yet implemented");
+		assertEquals(student.getLastName(), "Malle");
 	}
 
 	@Test
 	void testSetMatriculationNumber() {
-		fail("Not yet implemented");
+		student.setMatriculationNumber(12345);
+		
+		assertEquals(student.getMatriculationNumber(), 12345);
 	}
 
 	@Test
 	void testSetFirstName() {
-		fail("Not yet implemented");
+		student.setFirstName("Max");
+		
+		assertEquals(student.getFirstName(), "Max");
 	}
 
 	@Test
 	void testSetLastName() {
-		fail("Not yet implemented");
+		student.setLastName("Mustermann");
+		
+		assertEquals(student.getLastName(), "Mustermann");
 	}
 
 }

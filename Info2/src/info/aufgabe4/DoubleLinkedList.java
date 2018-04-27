@@ -6,7 +6,7 @@ public class DoubleLinkedList<E> {
 	 * 
 	 * @author jancm
 	 *
-	 * @param <E>
+	 * @param <E> Datentyp, den die Liste speichern soll
 	 */
 	 private static final class ListElement<E> {
 	        private E element;
@@ -34,6 +34,10 @@ public class DoubleLinkedList<E> {
 	
 	 private ListElement<E> getListElement(int index) {
 		 ListElement<E> current;
+		 if (index >= size) {
+			 throw new IndexOutOfBoundsException();
+		 }
+		 
 		 if (index > size / 2) {
 			 current = last;
 			 index = size - index - 1;
@@ -91,20 +95,19 @@ public class DoubleLinkedList<E> {
 	  * @param value Element, welches eingefuegt werden soll
 	  */
 	 public void add(int index, E value) {
-		if (index < size) {
-			if (index == 0) {
-				addFirst(value);
-			} else {
-				ListElement<E> current = getListElement(index);
-				ListElement<E> newElement = new ListElement<E>(value);
-				newElement.previous = current.previous;
-				current.previous = newElement;
-				newElement.next = current;
-				current.previous.next = newElement;	
-				size++;	
-			}
+		if (index == 0) {
+			addFirst(value);
+		} else if (index == size - 1) {
+			addLast(value);
 		} else {
-			throw new IndexOutOfBoundsException();
+			ListElement<E> current = getListElement(index);
+			ListElement<E> previous = getListElement(index - 1);
+			ListElement<E> newElement = new ListElement<E>(value);
+			newElement.previous = current.previous;
+			newElement.next = current;
+			current.previous = newElement;
+			previous.next = newElement;	
+			size++;	
 		}
 	 }
 	
@@ -124,11 +127,11 @@ public class DoubleLinkedList<E> {
 	  */
 	 
 	 public E removeFirst() { 
-		 
+		ListElement<E> current = getListElement(0);
 		first = first.next;
 		first.previous = null;
 		size--;
-		return null;
+		return current.element;
 	 }
 	
 	 /**
@@ -136,10 +139,32 @@ public class DoubleLinkedList<E> {
 	  * @return das entfernte Element
 	  */
 	 public E removeLast() {
+		 ListElement<E> current = getListElement(size - 1);
 		 last = last.previous;
 		 last.next = null;
 		 size--;
-		 return null;
+		 return current.element;
+	 }
+	 
+	 /**
+	  * Entfernt das Element, welches sich am angegebenen Index befindet, und gibt dieses zurück.
+	  * @param index Index des zu entfernenden Elements
+	  * @return
+	  */
+	 public E remove(int index) {
+		 if (index == 0) {
+			 return removeFirst();
+		 } else if (index == size - 1) {
+			 return removeLast();
+		 } else {
+			 ListElement<E> current = getListElement(index);
+			 ListElement<E> previous = getListElement(index - 1);
+			 ListElement<E> next = getListElement(index + 1);
+			 next.previous = previous;
+			 previous.next = next;
+			 size--;
+			 return current.element;
+		 }
 	 }
 	
 	 /**
