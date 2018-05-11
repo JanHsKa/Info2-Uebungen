@@ -63,6 +63,6 @@ public class SteuerZahler {
 	}
 	
 	private static boolean hasToPaySocialTax() {
-		return false;
+		return true;
 	}
 }

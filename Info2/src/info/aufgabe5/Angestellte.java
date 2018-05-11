@@ -13,9 +13,4 @@ public class Angestellte extends SteuerZahler {
 	private static int getTaxThreshold() {
 		return (int) 12000;
 	}
-
-	private static boolean hasToPaySocialTax() {
-		return true;
-	}
-
 }

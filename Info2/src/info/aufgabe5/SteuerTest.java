@@ -14,6 +14,8 @@ public class SteuerTest {
 		Studierender student2 = new Studierender(7000);
 		
 		System.out.println(student2.getTax());
+		
+		SteuerZahler test = new Studierender(0);
 	}
 
 }
