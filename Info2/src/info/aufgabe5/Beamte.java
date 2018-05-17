@@ -1,6 +1,6 @@
 package info.aufgabe5;
 
-public class Beamte extends NurEinkommensSteuer {
+public class Beamte extends SteuerZahler {
 
 	/**
 	 * Allgemeiner Konstruktor.

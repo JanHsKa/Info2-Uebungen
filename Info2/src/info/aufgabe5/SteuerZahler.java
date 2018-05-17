@@ -2,7 +2,8 @@ package info.aufgabe5;
 
 public class SteuerZahler {
 	private int einkommen;
-	
+	private boolean socialTax;
+	private boolean tax;
 	/**
 	 * Allgemeiner Konstruktor.
 	 * @param einkommen 
@@ -16,10 +17,10 @@ public class SteuerZahler {
 	 * @return Einkommenssteuer
 	 */
 	public int getTax() {
-		if (einkommen <= getTaxThreshold()) {
+		if (einkommen <= getTaxThreshold() && tax) {
 			return 0;			
 		} else {
-			return einkommen * getSteuerSatz() / 100;			
+			return einkommen * getTaxRate() / 100;			
 		}
 	}
 	
@@ -28,8 +29,8 @@ public class SteuerZahler {
 	 * @return Sozialabgaben
 	 */
 	public int getSocialTax() {
-		if (hasToPaySocialTax()) {
-			return einkommen * getSozialAbgabeSatz() / 100;
+		if (socialTax) {
+			return einkommen * getSocialTax() / 100;
 		} else {
 			return 0;
 		}
@@ -39,7 +40,7 @@ public class SteuerZahler {
 	 * 
 	 * @return
 	 */
-	private int getSteuerSatz() {
+	private int getTaxRate() {
 		if (einkommen <= 12000) {
 			return 10;
 		} else if (einkommen <= 24000) {
@@ -54,7 +55,7 @@ public class SteuerZahler {
 		
 	}
 	
-	private static int getSozialAbgabeSatz() {
+	private static int getSocialTaxRate() {
 		return 28;
 	}
 	
@@ -62,7 +63,6 @@ public class SteuerZahler {
 		return 0;
 	}
 	
-	private static boolean hasToPaySocialTax() {
-		return true;
-	}
+	protected void setHasToPay
+
 }
