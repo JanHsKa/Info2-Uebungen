@@ -63,6 +63,5 @@ public class SteuerZahler {
 		return 0;
 	}
 	
-	protected void setHasToPay
 
 }

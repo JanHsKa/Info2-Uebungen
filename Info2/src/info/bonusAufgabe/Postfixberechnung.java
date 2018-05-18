@@ -1,7 +1,7 @@
 package info.bonusAufgabe;
 
 import java.util.StringTokenizer;
-import java.util.ArrayList;
+import java.util.Stack;
 
 public class Postfixberechnung {
 
@@ -19,51 +19,47 @@ public class Postfixberechnung {
 	 */
 	public int postfixBerechnen(String eingabe) {
 		String merker;
-
+		Stack<Integer> speicher = new Stack<Integer>();
+		
 		StringTokenizer token = new StringTokenizer(eingabe);
-		
-		ArrayList<Integer> stackArray = new ArrayList<Integer>();
-		
-		int index = -1;
+
 		
 		while (token.hasMoreTokens()) {
 			merker = token.nextToken();
 
 			if (merker.equals("+") || merker.equals("-") || merker.equals("*")) {
-				rechenAktion(stackArray, index, merker);
-				index--;
+				rechenAktion(speicher, merker);
 			} else {
-				stackArray.add(Integer.parseInt(merker));
-				index++;
+				speicher.push(Integer.parseInt(merker));
 			}
 			
 		}
 		
-		return stackArray.get(index);
+		return speicher.pop();
 	}
 	
-	private void rechenAktion(ArrayList<Integer> stack, int index, String rechenZeichen) {
+	private void rechenAktion(Stack<Integer> stack, String rechenZeichen) {
 		int zwischenErgebnis;
 
 		switch (rechenZeichen) {
 		case "+":
-			zwischenErgebnis = stack.get(index) + stack.get(index - 1);	
+			zwischenErgebnis = stack.pop();	
+			zwischenErgebnis += stack.pop();	
 			break;
 		case "-":
-			zwischenErgebnis = stack.get(index - 1) - stack.get(index);	
+			zwischenErgebnis = stack.pop() * (-1);
+			zwischenErgebnis += stack.pop();
 			break;
 		case "*":
-			zwischenErgebnis = stack.get(index) * stack.get(index - 1);	
+			zwischenErgebnis = stack.pop();
+			zwischenErgebnis *= stack.pop();
 			break;
 		default:
 			zwischenErgebnis = 0;
 			break;
 		}
 		
-		stack.remove(index);
-		index--;
-		stack.remove(index);
-		stack.add(zwischenErgebnis);
+		stack.push(zwischenErgebnis);
 		
 	}
 	
