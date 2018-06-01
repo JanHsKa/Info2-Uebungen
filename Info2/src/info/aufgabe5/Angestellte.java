@@ -1,6 +1,6 @@
 package info.aufgabe5;
 
-public class Angestellte extends SteuerZahler {
+public class Angestellte extends TaxAndSocialTax {
 
 	/**
 	 * Allgemeiner Konstruktor.
@@ -10,7 +10,15 @@ public class Angestellte extends SteuerZahler {
 		super(einkommen);
 	}
 	
-	private static int getTaxThreshold() {
-		return (int) 12000;
+	/**
+	 * Gibt die zu zahlenden Einkommenssteuern der Person zurueck.
+	 * @return Einkommenssteuer
+	 */
+	public int getTax() {
+		if (getEinkommen() <= 12000) {
+			return 0;	
+		} else {
+			return super.getTax();	
+		}
 	}
 }

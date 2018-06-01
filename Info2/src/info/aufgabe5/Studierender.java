@@ -1,7 +1,7 @@
 package info.aufgabe5;
 
-public class Studierender extends SteuerZahler {
-	
+public class Studierender extends OnlyTax {
+	 
 	/**
 	 * Standardkonstruktor.
 	 * @param einkommen Einkommen der Person
@@ -10,7 +10,15 @@ public class Studierender extends SteuerZahler {
 		super(einkommen);
 	}
 	
-	private static int getTaxThreshold() {
-		return (int) 6000;
+	/**
+	 * Gibt die zu zahlenden Einkommenssteuern der Person zurueck.
+	 * @return Einkommenssteuer
+	 */
+	public int getTax() {
+		if (getEinkommen() <= 6000) {
+			return 0;
+		} else {
+			return super.getTax();	
+		}
 	}
 }
