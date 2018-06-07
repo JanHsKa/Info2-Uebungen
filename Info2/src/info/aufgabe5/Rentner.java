@@ -1,6 +1,6 @@
 package info.aufgabe5;
 
-public class Rentner extends NoTax {
+public class Rentner extends KeineSteuern {
 	
 	/**
 	 * Allgemeiner Konstruktor.

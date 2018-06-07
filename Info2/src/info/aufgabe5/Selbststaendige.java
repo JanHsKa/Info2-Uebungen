@@ -1,6 +1,6 @@
 package info.aufgabe5;
 
-public class Selbststaendige extends OnlyTax {
+public class Selbststaendige extends NurSteuern {
 
 	/**
 	 * Allgemeiner Konstruktor.

@@ -1,12 +1,12 @@
 package info.aufgabe5;
 
-public class OnlyTax extends SteuerZahler {
+public class NurSteuern extends SteuerZahler {
 
 	/**
 	 * Allgemeiner Konstruktor.
 	 * @param einkommen Einkommen der Person
 	 */
-	public OnlyTax(int einkommen) {
+	public NurSteuern(int einkommen) {
 		super(einkommen);
 		// TODO Auto-generated constructor stub
 	}

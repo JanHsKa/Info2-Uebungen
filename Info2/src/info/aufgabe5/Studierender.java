@@ -1,6 +1,6 @@
 package info.aufgabe5;
 
-public class Studierender extends OnlyTax {
+public class Studierender extends NurSteuern {
 	 
 	/**
 	 * Standardkonstruktor.

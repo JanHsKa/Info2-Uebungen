@@ -1,6 +1,6 @@
 package info.aufgabe5;
 
-public class Hinterbliebene extends OnlySocialTax {
+public class Hinterbliebene extends NurSozialAbgabe {
 	
 	/**
 	 * Allgemeiner Konstruktor.
