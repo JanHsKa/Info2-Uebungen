@@ -1,6 +1,6 @@
 package info.aufgabe5;
 
-public class Angestellte extends TaxAndSocialTax {
+public class Angestellte extends SteuernUndSozialAbgabe {
 
 	/**
 	 * Allgemeiner Konstruktor.
