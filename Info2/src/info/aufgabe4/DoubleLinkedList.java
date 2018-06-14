@@ -31,12 +31,20 @@ public class DoubleLinkedList<E> {
 		first = null;
 		last = null;
 	 }
-	
-	 private ListElement<E> getListElement(int index) {
-		 ListElement<E> current;
+	 
+	 private void checkEmpty() {
+		 checkOutOfBounds(0);
+	 }
+	 
+	 private void checkOutOfBounds(int index) {
 		 if (index >= size) {
 			 throw new IndexOutOfBoundsException();
 		 }
+	 }
+	
+	 private ListElement<E> getListElement(int index) {
+		 ListElement<E> current;
+		 checkOutOfBounds(index);
 		 
 		 if (index > size / 2) {
 			 current = last;
@@ -127,6 +135,7 @@ public class DoubleLinkedList<E> {
 	  */
 	 
 	 public E removeFirst() { 
+		checkEmpty();
 		ListElement<E> current = getListElement(0);
 		first = first.next;
 		first.previous = null;
@@ -139,6 +148,10 @@ public class DoubleLinkedList<E> {
 	  * @return das entfernte Element
 	  */
 	 public E removeLast() {
+		 if (size <= 1) {
+			 return removeFirst();
+		 }
+		 
 		 ListElement<E> current = getListElement(size - 1);
 		 last = last.previous;
 		 last.next = null;
@@ -154,17 +167,21 @@ public class DoubleLinkedList<E> {
 	 public E remove(int index) {
 		 if (index == 0) {
 			 return removeFirst();
+			 
 		 } else if (index == size - 1) {
 			 return removeLast();
-		 } else {
-			 ListElement<E> current = getListElement(index);
-			 ListElement<E> previous = getListElement(index - 1);
-			 ListElement<E> next = getListElement(index + 1);
-			 next.previous = previous;
-			 previous.next = next;
-			 size--;
-			 return current.element;
-		 }
+			 
+		 } 
+		 checkOutOfBounds(index);
+		 
+		 ListElement<E> current = getListElement(index);
+		 ListElement<E> previous = getListElement(index - 1);
+		 ListElement<E> next = getListElement(index + 1);
+		 next.previous = previous;
+		 previous.next = next;
+		 size--;
+		 
+		 return current.element;
 	 }
 	
 	 /**

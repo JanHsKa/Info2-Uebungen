@@ -9,15 +9,17 @@ public class CollectionsTest {
 	public static void main(String[] args) {
 		CollectionsTimeMeasure collectionTime = new CollectionsTimeMeasure();
 		
-		collectionTime.testAdd();
-		collectionTime.searchIterator();
-		collectionTime.searchBinary();
-		collectionTime.searchOwnMethod();
+		collectionTime.runAddTests();
+		collectionTime.runIteratorSearchTests();
+		collectionTime.runBinarySearchTests();
+		collectionTime.runSearchOwnMethodTests();
 		
-		collectionTime.testInsert();
-		collectionTime.searchIterator();
-		collectionTime.searchBinary();
-		collectionTime.searchOwnMethod();
+		collectionTime.runInsertTests();
+		collectionTime.runIteratorSearchTests();
+		collectionTime.runBinarySearchTests();
+		collectionTime.runSearchOwnMethodTests();
+		
+		collectionTime.runAddAndSumTest();
 
 	}
 
